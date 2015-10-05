@@ -1,0 +1,20 @@
+{
+  "name": "passmen",
+  "version": "1.0.0",
+  "description": "A simple password manager",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "password",
+    "manager",
+    "command",
+    "line"
+  ],
+  "author": "Bas Tuijnman",
+  "license": "SEE LICENSE IN LICENSE.MD",
+  "devDependencies": {
+    "prompt": "^0.2.14"
+  }
+}
