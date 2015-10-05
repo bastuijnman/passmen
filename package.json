@@ -16,5 +16,8 @@
   "license": "SEE LICENSE IN LICENSE.MD",
   "devDependencies": {
     "prompt": "^0.2.14"
+  },
+  "bin": {
+    "passmen": "index.js"
   }
 }
