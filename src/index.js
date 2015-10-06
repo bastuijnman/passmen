@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 
 var prompt = require('prompt'),
-    cmd = process.argv[2] || 'list';
+    storage = require('./storage'),
+    actions = require('./actions');
 
+prompt.message = 'Please enter';
+
+storage.getItem('master').then(actions.resolve, actions.init);

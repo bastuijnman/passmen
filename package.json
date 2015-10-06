@@ -18,6 +18,6 @@
     "prompt": "^0.2.14"
   },
   "bin": {
-    "passmen": "index.js"
+    "passmen": "src/index.js"
   }
 }
