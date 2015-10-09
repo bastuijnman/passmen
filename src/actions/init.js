@@ -1,4 +1,5 @@
 var prompt = require('prompt'),
+    passwordManager = require('../password'),
     storage = require('../storage'),
     schema = {
         properties: {
@@ -24,7 +25,7 @@ createInitial = function () {
             if (err) {
                 return reject(err);
             }
-            return storage.setItem('master', result.master)
+            return storage.setItem('master', passwordManager.createMaster(result.master));
         })
     });
 };

@@ -1,7 +1,9 @@
 var cmd = process.argv[2] || 'list',
     actions = {
         init: require('./actions/init'),
-        list: require('./actions/list')
+        list: require('./actions/list'),
+        random: require('./actions/random'),
+        add: require('./actions/add')
     },
     action = actions[cmd];
 
