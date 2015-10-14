@@ -15,7 +15,7 @@
   "author": "Bas Tuijnman",
   "license": "SEE LICENSE IN LICENSE.MD",
   "devDependencies": {
-    "prompt": "^0.2.14"
+    "inquirer": "^0.10.1"
   },
   "bin": {
     "passmen": "src/index.js"
