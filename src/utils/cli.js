@@ -35,7 +35,7 @@ module.exports = {
         }
 
         if (typeof defaultValue !== 'undefined') {
-            return false;
+            return defaultValue;
         }
 
         return false;
