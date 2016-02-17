@@ -1,6 +1,6 @@
 {
   "name": "passmen",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A simple password manager",
   "main": "index.js",
   "scripts": {

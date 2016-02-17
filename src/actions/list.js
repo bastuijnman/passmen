@@ -45,7 +45,7 @@ var
                     }));
                 }, function () {
                     process.stdout.write('You don\'t have any passwords stored yet');
-                    done([]);
+                    process.exit(0);
                 });
             }
         },
