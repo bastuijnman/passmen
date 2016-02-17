@@ -1,6 +1,6 @@
 {
   "name": "passmen",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A simple password manager",
   "main": "index.js",
   "scripts": {
@@ -14,7 +14,7 @@
   ],
   "author": "Bas Tuijnman",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "inquirer": "^0.10.1"
   },
   "bin": {
