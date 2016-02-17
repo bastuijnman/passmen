@@ -13,7 +13,7 @@
     "line"
   ],
   "author": "Bas Tuijnman",
-  "license": "SEE LICENSE IN LICENSE.MD",
+  "license": "MIT",
   "devDependencies": {
     "inquirer": "^0.10.1"
   },
