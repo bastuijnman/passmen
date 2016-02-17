@@ -1,3 +1,6 @@
+var cli = require('../../utils/cli'),
+    contents = 'abcdefghijklmnopqrstuvw1234567890!@#$%^&*()-=_+';
+
 module.exports = {
 
     /**
@@ -5,9 +8,25 @@ module.exports = {
      * @return {string} A new random password
      */
     generate: function () {
-        var crypto = require('crypto'),
-            random = crypto.randomBytes(256);
+        var i = 0,
+            pwd = '',
+            size = cli.getOption('size', 20);
 
-        return random.toString();
+        for (; i < size; i++) {
+            pwd += this.getRandomCharacter();
+        }
+        return pwd;
+    },
+
+    /**
+     * Get a random character from the seed string
+     * @return {string} A random character
+     */
+    getRandomCharacter: function () {
+        return contents[Math.min(
+            Math.round(Math.random() * contents.length),
+            contents.length - 1
+        )];
     }
+
 };
