@@ -1,4 +1,5 @@
 var fs = require('fs'),
+    filename = __dirname + '/../../store.json',
     store,
     read,
     resolve;
@@ -11,7 +12,7 @@ var fs = require('fs'),
  */
 store = function (data) {
     return new Promise(function (fulfill, reject) {
-        fs.writeFile('./store.json', JSON.stringify(data), function (err) {
+        fs.writeFile(filename, JSON.stringify(data), function (err) {
             if (err) {
                 return reject(err);
             }
@@ -26,7 +27,7 @@ store = function (data) {
  */
 read = function () {
     return new Promise(function (fulfill, reject) {
-        fs.readFile('./store.json', 'utf8', function (err, data) {
+        fs.readFile(filename, 'utf8', function (err, data) {
             if (err) {
 
                 if (err.errno === -2) {
