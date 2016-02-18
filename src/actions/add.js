@@ -1,5 +1,12 @@
 var
     /**
+     * The CLI utility
+     * @private
+     * @type {object}
+     */
+    cli = require('../utils/cli'),
+
+    /**
      * The inquirer library
      * @private
      * @type {object}
@@ -68,10 +75,11 @@ addAction = {
      * @return {Promise} Promise that fulfills when the encrypted password has been stored or rejects when it's not stored
      */
     store: function (params) {
-        var id = params.id,
+        var encryption = cli.getOption('encryption', 'aes-256-ctr'),
+            id = params.id,
             password = params.password,
             master = params.master,
-            encrypted = passwordManager.encryptPassword(password, master);
+            encrypted = passwordManager.encryptPassword(password, master, encryption);
 
         return storage.getItem('items').then(function (items) {
             return items;
@@ -80,7 +88,8 @@ addAction = {
         }).then(function (items) {
             items.push({
                 id: id,
-                password: encrypted
+                password: encrypted,
+                encryption: encryption
             });
             return storage.setItem('items', items);
         });
@@ -91,7 +100,28 @@ addAction = {
      * when all answers are filled
      */
     run: function () {
+        var random = cli.getOption('random', false);
+
+        /*
+         * If random is flagged we no longer have the need
+         * for the password input. We remove it from the
+         * questions array
+         */
+        if (random) {
+            questions.forEach(function (item, index) {
+                if (item.name === 'password') {
+                    questions.splice(index, 1);
+                }
+            });
+        }
+
         inquirer.prompt(questions, function (answers) {
+
+            // Generate a random password
+            if (random) {
+                answers.password = require('./random').generate();
+            }
+
             this.store(answers);
         }.bind(this));
     }

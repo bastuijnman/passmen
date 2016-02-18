@@ -1,4 +1,5 @@
-var crypto = require('crypto'),
+var defaultAlgorithm = 'aes-256-ctr',
+    crypto = require('crypto'),
     storage = require('./storage'),
     passwordManager;
 
@@ -36,10 +37,13 @@ passwordManager = {
      * @param  {string} master   The master password to use as cipher key
      * @return {string} The encrypted password
      */
-    encryptPassword: function (password, master) {
-        var cipher = crypto.createCipher('aes192', master);
-        cipher.update(password, 'utf8');
-        return cipher.final('hex');
+    encryptPassword: function (password, master, algorithm) {
+        var cipher = crypto.createCipher(algorithm || defaultAlgorithm, master),
+            crypted = cipher.update(password, 'utf8', 'hex');
+
+        crypted += cipher.final('hex');
+
+        return crypted;
     },
 
     /**
@@ -48,11 +52,12 @@ passwordManager = {
      * @param  {string} master   The master password that was used as cipher key
      * @return {string|boolean} The decrypted password or false when a failure has occured
      */
-    decryptPassword: function (password, master) {
-        var decipher = crypto.createDecipher('aes192', master);
-        decipher.update(password, 'hex');
+    decryptPassword: function (password, master, algorithm) {
+        var decipher = crypto.createDecipher(algorithm || defaultAlgorithm, master),
+            decrypted = decipher.update(password, 'hex', 'utf8');
         try {
-            return decipher.final('utf8');
+            decrypted += decipher.final('utf8');
+            return decrypted;
         } catch (e) {
             return false;
         }

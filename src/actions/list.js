@@ -84,7 +84,15 @@ listAction = {
             var item = items.filter(function (item) {
                     return item.id === params.item
                 })[0],
-                decrypted = passwordManager.decryptPassword(item.password, params.master),
+
+                /*
+                 * Get the encryption type from the item and have a
+                 * default fallback of aes192 because that was used
+                 * as the default in the first version. This is to
+                 * provide backward-compatibility
+                 */
+                encryption = item.encryption || 'aes192',
+                decrypted = passwordManager.decryptPassword(item.password, params.master, encryption),
                 message;
 
             if (decrypted) {

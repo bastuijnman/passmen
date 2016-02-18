@@ -16,8 +16,32 @@ You can also run: `passmen list`
 ### Storing a password
 To store a password run: `passmen add` this will prompt you for your master password, after entering you can enter the name of the service and the password you want to store.
 
-### Generating a random password
-To generate a random password run: `passmen random`, it will generate a 20 character long password.
+#### Storing a random password
+There are two methods to store a random password.
 
-#### Size
-You can specify a size by running `passmen random --size=5`, where 5 can be any number.
+**Generating a separate password**
+Run `passmen random` to create a random password and have it copied to your clipboard or displayed on screen. After that use `passmen add` to store the password you copied.
+
+**Generating a password through add**
+Run `passmen add --random` to generate a new random password and immediately add it to passmen.
+
+**Random password size**
+You can use the flag `--size=X` to set the size of the random password, for example: `passmen random --random=15`
+
+**Examples**
+```
+# Add a new password
+passmen add
+
+# Add a random password
+passmen add --random
+
+# Add a random 15 character sized password
+passmen add --random --size=15
+
+# Generate a random password
+passmen random
+
+# Generate a random 15 character sized password
+passmen random --size=15
+```
