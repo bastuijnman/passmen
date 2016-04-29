@@ -28,6 +28,9 @@ Run `passmen add --random` to generate a new random password and immediately add
 **Random password size**
 You can use the flag `--size=X` to set the size of the random password, for example: `passmen random --random=15`
 
+### Removing a password
+To remove a password run: `passmen remove`, this will prompt you for your master password. If your master password is correct you can select the password you want to remove. After selection the password is removed from your list.
+
 **Examples**
 ```
 # Add a new password
@@ -44,4 +47,7 @@ passmen random
 
 # Generate a random 15 character sized password
 passmen random --size=15
+
+# Remove a password
+passmen remove
 ```

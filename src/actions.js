@@ -2,7 +2,8 @@ var actions = {
         init: require('./actions/init'),
         list: require('./actions/list'),
         random: require('./actions/random'),
-        add: require('./actions/add')
+        add: require('./actions/add'),
+        remove: require('./actions/remove')
     };
 
 module.exports = {
