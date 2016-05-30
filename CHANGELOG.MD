@@ -1,6 +1,7 @@
 # Passmen Changelog
 
 ## UNRELEASED
+* Changed default command to help
 * Added help functionality
 
 ## 0.4.0
