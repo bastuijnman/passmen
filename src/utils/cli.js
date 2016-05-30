@@ -3,8 +3,8 @@ module.exports = {
     getParsed: function () {
         var args = process.argv,
             length = args.length,
+            commandArgs = [],
             options = {},
-            flags = {},
             arg,
             i,
             split;
@@ -15,12 +15,14 @@ module.exports = {
                 arg = arg.replace('--', '');
                 split = arg.split('=');
                 options[split[0]] = split[1] || true;
+            } else if (i > 2) { // Don't push default command args
+                commandArgs.push(arg);
             }
         }
 
         return {
-            options: options,
-            flags: flags
+            args: commandArgs,
+            options: options
         };
 
     },
@@ -39,6 +41,12 @@ module.exports = {
         }
 
         return false;
+    },
+
+    help: function (module) {
+        module = module || 'help';
+        process.stdout.write(require('../help/' + module));
+        process.exit(0);
     }
 
 };

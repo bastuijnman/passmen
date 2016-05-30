@@ -3,7 +3,8 @@ var actions = {
         list: require('./actions/list'),
         random: require('./actions/random'),
         add: require('./actions/add'),
-        remove: require('./actions/remove')
+        remove: require('./actions/remove'),
+        help: require('./actions/help')
     };
 
 module.exports = {
@@ -20,6 +21,15 @@ module.exports = {
             return true;
         }
         return false;
+    },
+
+    /**
+     * Check if an action resolves without actually running the action
+     * @param  {string} key The key of the action you want to check
+     * @return {boolean}    True when the action exists, false otherwise
+     */
+    resolveWithoutRunning: function (key) {
+        return (typeof actions[key] !== 'undefined');
     },
 
     /**

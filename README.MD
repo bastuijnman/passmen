@@ -3,6 +3,9 @@
 ## Installing
 To install passmen run: `npm install -g passmen`
 
+## Help
+To output the generic help you can run `passmen help`. Want a help output for a specific command? Just run `passmen <command> --help`, where `<command>` is the command you want to see the help for.
+
 ## Usage
 
 ### First time

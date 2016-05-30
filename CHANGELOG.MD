@@ -1,5 +1,8 @@
 # Passmen Changelog
 
+## UNRELEASED
+* Added help functionality
+
 ## 0.4.0
 * Added remove password functionality
 

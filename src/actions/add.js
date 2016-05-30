@@ -102,6 +102,10 @@ addAction = {
     run: function () {
         var random = cli.getOption('random', false);
 
+        if (cli.getOption('--help', false)) {
+            cli.help('add');
+        }
+
         /*
          * If random is flagged we no longer have the need
          * for the password input. We remove it from the
