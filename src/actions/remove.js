@@ -1,4 +1,6 @@
-var
+'use strict';
+
+let
     /**
      * The CLI utility
      * @private
@@ -38,12 +40,11 @@ var
             type: 'password',
             message: 'please enter your master password',
             validate: function (input) {
-                var done = this.async();
-                passwordManager.verifyMaster(input).then(function (verified) {
+                return passwordManager.verifyMaster(input).then(function (verified) {
                     if (!verified) {
-                        done('The master password is not correct');
+                        return 'The master password is not correct';
                     }
-                    done(true);
+                    return true;
                 })
             }
         },
@@ -52,11 +53,10 @@ var
             type: 'list',
             message: 'select the password you want to remove',
             choices: function () {
-                var done = this.async();
-                storage.getItem('items').then(function (items) {
-                    done(items.map(function (item) {
+                return storage.getItem('items').then(function (items) {
+                    return items.map(function (item) {
                         return item.id;
-                    }));
+                    });
                 }, function () {
                     process.stdout.write('You don\'t have any passwords stored yet');
                     process.exit(0);
@@ -73,20 +73,30 @@ var
 removeAction = {
 
     run: function () {
-        inquirer.prompt(questions, function (answers) {
-            storage.getItem('items').then(function (items) {
-                return items;
-            }, function () {
-                return [];
-            }).then(function (items) {
-                items.forEach(function (item, index) {
+
+        return Promise
+            .all([
+                inquirer.prompt(questions),
+                storage.getItem('items')
+            ])
+            .then(results => {
+                let answers = results[0],
+                    items = results[1];
+
+                // Remove the item identical to the users answer
+                items.forEach((item, index) => {
                     if (item.id === answers.item) {
                         items.splice(index, 1);
                     }
                 });
+
+                // Store the resulting items array
                 return storage.setItem('items', items);
+            })
+            .catch(err => {
+                process.stdout.write(err);
+                process.exit(0);
             });
-        });
     }
 
 };

@@ -15,7 +15,7 @@
   "author": "Bas Tuijnman",
   "license": "MIT",
   "dependencies": {
-    "inquirer": "^0.10.1"
+    "inquirer": "^1.0.3"
   },
   "bin": {
     "passmen": "src/index.js"
